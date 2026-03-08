@@ -1,15 +1,1 @@
-name: Run Copilot PR Review
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-jobs:
-  pr_review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Copilot PR Review
-        uses: github/copilot-actions@v1
-        with:
-          agent: .github/agents/prReview.agent.md
