@@ -127,6 +127,16 @@ class FileUploadViewController: UIViewController {
             uploadButton.bottomAnchor.constraint(equalTo: clearButton.topAnchor, constant: -12),
             uploadButton.heightAnchor.constraint(equalToConstant: 50),
 
+            private let musicServicesButton: UIButton = {
+                let button = UIButton(type: .system)
+                button.setTitle("Music Streaming Services", for: .normal)
+                button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+                button.backgroundColor = UIColor.systemGreen
+                button.setTitleColor(.white, for: .normal)
+                button.layer.cornerRadius = 10
+                button.translatesAutoresizingMaskIntoConstraints = false
+                return button
+            }()
             clearButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             clearButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24)
         ])
@@ -148,6 +158,7 @@ class FileUploadViewController: UIViewController {
 
     @objc private func didTapClear() {
         fileNameLabel.text = "No file selected"
+                view.addSubview(musicServicesButton)
         fileContentTextView.text = nil
         fileContentTextView.isHidden = true
         clearButton.isHidden = true
@@ -171,6 +182,10 @@ class FileUploadViewController: UIViewController {
             fileNameLabel.text = fileName
             fileContentTextView.text = content
             fileContentTextView.isHidden = false
+                    musicServicesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+                    musicServicesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+                    musicServicesButton.bottomAnchor.constraint(equalTo: uploadButton.topAnchor, constant: -12),
+                    musicServicesButton.heightAnchor.constraint(equalToConstant: 50),
             clearButton.isHidden = false
 
             let config = UIImage.SymbolConfiguration(pointSize: 80, weight: .thin)
@@ -187,8 +202,13 @@ class FileUploadViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+                musicServicesButton.addTarget(self, action: #selector(didTapMusicServices), for: .touchUpInside)
     }
 }
+            @objc private func didTapMusicServices() {
+                let musicVC = MusicServicesViewController()
+                navigationController?.pushViewController(musicVC, animated: true)
+            }
 
 // MARK: - UIDocumentPickerDelegate
 
