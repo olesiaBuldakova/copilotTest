@@ -5,7 +5,7 @@ class MusicServicesViewController: UIViewController {
 
     // MARK: - UI Elements
 
-    private let titleLabel: UILabel! = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Music Streaming Services"
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
@@ -14,7 +14,7 @@ class MusicServicesViewController: UIViewController {
         return label
     }()
 
-    private let titleLabel1: UILabel! = {
+    private let titleLabel1: UILabel = {
         let label = UILabel()
         label.text = "Music Streaming Services"
         label.font = UIFont.systemFont(ofSize: 28, weight: .bold)
@@ -23,7 +23,7 @@ class MusicServicesViewController: UIViewController {
         return label
     }()
 
-    private let stackView: UIStackView! = {
+    private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20
@@ -32,7 +32,7 @@ class MusicServicesViewController: UIViewController {
         return stack
     }()
 
-    private let stackView12: UIStackView! = {
+    private let stackView12: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20
