@@ -1,20 +1,15 @@
----
-name: pr-review
-description: This PR review workflow uses our custom PR review agent defined in .github/agents/prReview.agent.md
-tools:
-  - read_diff
-  - read_file
-  - repo_search
-  - list_files
-  - grep
-review:
-  output_format:
-    - Summary
-    - Critical Issues
-    - Suggestions
-    - Minor Improvements
-behavior:
-  - Automatically triggered on all PRs
-  - Reads PR diffs and relevant files
-  - Uses instructions and guidelines defined in the custom agent
-  - Provides actionable, detailed feedback
+name: Run Copilot PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  pr_review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Copilot PR Review
+        uses: github/copilot-actions@v1
+        with:
+          agent: .github/agents/prReview.agent.md
